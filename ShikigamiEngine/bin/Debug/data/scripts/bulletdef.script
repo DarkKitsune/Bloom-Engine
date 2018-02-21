@@ -1,0 +1,406 @@
+createEffectTable = {
+    "gray": animation_create("bullets/bullets.png", 0, 33 * 0, 2013, 33, 33, 1),
+    "red": animation_create("bullets/bullets.png", 0, 33 * 1, 2013, 33, 33, 1),
+    "magenta": animation_create("bullets/bullets.png", 0, 33 * 2, 2013, 33, 33, 1),
+    "blue": animation_create("bullets/bullets.png", 0, 33 * 3, 2013, 33, 33, 1),
+    "cyan": animation_create("bullets/bullets.png", 0, 33 * 4, 2013, 33, 33, 1),
+    "green": animation_create("bullets/bullets.png", 0, 33 * 5, 2013, 33, 33, 1),
+    "yellow": animation_create("bullets/bullets.png", 0, 33 * 6, 2013, 33, 33, 1),
+    "white": animation_create("bullets/bullets.png", 0, 33 * 7, 2013, 33, 33, 1)
+};
+
+destroyEffectTable = {
+    "gray": animation_create("bullets/deletes.png", 0.5, 0, 64 * 0, 64, 64, 8),
+    "red": animation_create("bullets/deletes.png", 0.5, 0, 64 * 1, 64, 64, 8),
+    "magenta": animation_create("bullets/deletes.png", 0.5, 0, 64 * 2, 64, 64, 8),
+    "blue": animation_create("bullets/deletes.png", 0.5, 0, 64 * 3, 64, 64, 8),
+    "cyan": animation_create("bullets/deletes.png", 0.5, 0, 64 * 4, 64, 64, 8),
+    "green": animation_create("bullets/deletes.png", 0.5, 0, 64 * 5, 64, 64, 8),
+    "yellow": animation_create("bullets/deletes.png", 0.5, 0, 64 * 6, 64, 64, 8),
+    "white": animation_create("bullets/deletes.png", 0.5, 0, 64 * 7, 64, 64, 8)
+};
+
+function onBulletCreate()
+{
+    local oldGlow = getGlow();
+
+    setScale(3, 3);
+    setAlpha(0);
+    setGlow(127);
+    setAnimation(createEffectTable[getBulletType()]);
+
+    changeScale(0.7, 0.7, TWEEN_DECELERATE, 15);
+    changeAlpha(255, TWEEN_SMOOTH, 10);
+
+    wait(15);
+
+    resetAnimation();
+    setScale(1, 1);
+    setGlow(oldGlow);
+}
+
+function onBulletDestroy()
+{
+    setGlow(255);
+    setSpeed(0);
+    setAnimation(destroyEffectTable[getBulletType()]);
+
+    wait(15);
+
+    delete();
+}
+
+local tex = "bullets/bullets.png";
+local defY = 0;
+scale = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+circleRinged = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+circle = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+rice = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+kunai = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+ice = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+amulet = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+bullet = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+star = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+coin = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+droplet = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 18;
+arrowhead = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 18,
+    "height": 18,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY = 216;
+starL = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 34;
+circleL = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 34;
+knife = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 34;
+riceL = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 1,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = bulletDef({
+    "texture": tex,
+    "types": ["gray"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = butterfly ~ bulletDef({
+    "texture": tex,
+    "types": ["red"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = butterfly ~ bulletDef({
+    "texture": tex,
+    "types": ["magenta"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = butterfly ~ bulletDef({
+    "texture": tex,
+    "types": ["blue"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = butterfly ~ bulletDef({
+    "texture": tex,
+    "types": ["cyan"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = butterfly ~ bulletDef({
+    "texture": tex,
+    "types": ["green"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = butterfly ~ bulletDef({
+    "texture": tex,
+    "types": ["yellow"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+butterfly = butterfly ~ bulletDef({
+    "texture": tex,
+    "types": ["white"],
+    "speed": 0.5,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 12,
+    "hitbox": 4
+});
+
+defY += 34;
+note = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue"],
+    "speed": 0.1,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 3,
+    "hitbox": 4,
+    "fixedAngle": true
+});
+
+defY += 34;
+note = note ~ bulletDef({
+    "texture": tex,
+    "types": ["cyan", "green", "yellow", "white"],
+    "speed": 0.1,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 3,
+    "hitbox": 4,
+    "fixedAngle": true
+});
+
+defY += 34;
+rest = bulletDef({
+    "texture": tex,
+    "types": ["gray", "red", "magenta", "blue", "cyan", "green", "yellow", "white"],
+    "speed": 0,
+    "x": 0,
+    "y": defY,
+    "width": 34,
+    "height": 34,
+    "frames": 1,
+    "hitbox": 4,
+    "fixedAngle": true
+});

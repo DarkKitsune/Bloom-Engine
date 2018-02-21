@@ -1,0 +1,68 @@
+// Set stages
+addStage("stages/stage1.script");
+
+// Create background image in the frame
+local function func()
+{
+    setAnimation(animation_create("frame/background.png", 0, 0, 0, 640, 480, 1));
+}
+frameObject_create(func, 320, 240);
+
+// Set other stuff
+boss_setMarkerAnimation(animation_create("info/info1.png", 0, 0, 0, 64, 16, 1));
+boss_setHealthBarAnimations(
+    animation_create("info/info1.png", 0, 1, 16, 14, 16, 1),
+    animation_create("info/info1.png", 0, 1, 32, 14, 16, 1)
+);
+
+// Set test player data
+player.setStartPosition(0, 400);
+player.setSpeed(4.5, 3);
+player.setHitbox(2);
+player.setTurnTime(8);
+player.setReviveTime(130);
+player.setAnimationIdle(animation_create("players/reimu/reimu.png", 0.2, 0, 0, 32, 48, 8));
+player.setAnimationTurnRight(animation_create("players/reimu/reimu.png", 0, 0, 48, 32, 48, 8));
+player.setAnimationRight(animation_create("players/reimu/reimu.png", 0.2, 0, 96, 32, 48, 8));
+player.setAnimationTurnLeft(animation_createMirrored("players/reimu/reimu.png", 0, 0, 48, 32, 48, 8));
+player.setAnimationLeft(animation_createMirrored("players/reimu/reimu.png", 0.2, 0, 96, 32, 48, 8));
+
+function onPlayerDie()
+{
+    changeScale(0, 1.5, TWEEN_ACCELERATE, 20);
+
+    local rad = 24;
+    while (rad < 460)
+    {
+        destroyBullets(rad);
+        rad += 40;
+        wait(3);
+    }
+
+    setPosition(0, 448);
+    setAlpha(127);
+    changeScale(1, 1, TWEEN_DECELERATE, 40);
+    move(0, 400, TWEEN_LINEAR, 40);
+}
+
+function onPlayerRevive()
+{
+    setAlpha(255);
+}
+
+function onPlayerShoot()
+{
+    local pat = pattern_create();
+    pat:setBullet(reimuAmulet.red);
+    pat:setCount(7);
+    pat:setSpeed(18);
+    pat:setAngle(-90, 30);
+
+    local ang = 0;
+    while (1)
+    {
+        pat:fire();
+
+        wait(5);
+    }
+}

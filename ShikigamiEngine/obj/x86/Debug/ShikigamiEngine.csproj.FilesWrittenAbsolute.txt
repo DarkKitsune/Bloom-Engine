@@ -1,0 +1,12 @@
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.Icon.ico
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/OpenTK.dll.config
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/Content/fontMedium.xnb
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/Content/fontSmall.xnb
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/ShikigamiEngine.exe.mdb
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/ShikigamiEngine.exe
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.exe
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.exe.mdb
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/MonoGame.Framework.dll
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/DrakeScript.dll
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/PowerDS.dll

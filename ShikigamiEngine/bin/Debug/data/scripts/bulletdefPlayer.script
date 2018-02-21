@@ -1,0 +1,26 @@
+local tex = "players/reimu/bullets.png";
+
+reimuAmulet = bulletDef({
+    "texture": tex,
+    "types": ["red", "blue"],
+    "speed": 0,
+    "x": 0,
+    "y": 0,
+    "width": 16,
+    "height": 64,
+    "frames": 1,
+    "hitbox": 11,
+    "blend": BLEND_ADD,
+    "damage": 1
+});
+
+function onPlayerBulletDestroy()
+{
+    changeScale(0.2, 7, TWEEN_DECELERATE, 20);
+    changeAlpha(0, TWEEN_LINEAR, 20);
+    setSpeed(getSpeed() / 2);
+
+    wait(20);
+
+    delete();
+}

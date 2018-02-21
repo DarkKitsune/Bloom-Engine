@@ -1,0 +1,12 @@
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/OpenTK.dll.config
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/ShikigamiEngine.exe
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/ShikigamiEngine.pdb
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/DrakeScript.dll
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/PowerDS.dll
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/MonoGame.Framework.xml
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/MonoGame.Framework.dll.config
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/bin/Debug/DrakeScript.dll.mdb
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.csprojResolveAssemblyReference.cache
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.csproj.CoreCompileInputs.cache
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.exe
+/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.pdb

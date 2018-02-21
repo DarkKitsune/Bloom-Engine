@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{28E93996-5F89-44E3-9A64-69D2E517BB0A}|Default" StartupItem="ShikigamiEngine/ShikigamiEngine.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShikigamiEngine/Libs.cs">
+    <Files>
+      <File FileName="ShikigamiEngine/Bullet.cs" Line="1" Column="1" />
+      <File FileName="ShikigamiEngine/Script.cs" Line="1" Column="1" />
+      <File FileName="ShikigamiEngine/Libs.cs" Line="731" Column="47" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ShikigamiEngine PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
