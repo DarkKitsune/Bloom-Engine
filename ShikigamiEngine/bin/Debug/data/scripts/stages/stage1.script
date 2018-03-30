@@ -8,19 +8,26 @@ local function bossFunc()
 {
     local function attack1()
     {
-        local pat = pattern_create();
+        local pat = pattern.create();
         pat:setBullet(scale.red);
         pat:setCount(4);
-        pat:setSpeed(1.5);
+        pat:setSpeed(4);
         pat:setRadius(32);
         pat:setAngleOffset(60);
+        pat:setTask(
+            function()
+            {
+                wait(30);
+                accelerate(1.5, TWEEN_SMOOTH, 30); // Slow down to 1.5 over 30 frames
+            }
+        );
 
         local ang = 0;
         local n = 0;
         while (1)
         {
             pat:setAngle(ang);
-            pat:setBullet([note.red, note.magenta][n % 2]);
+            pat:setBullet([bullet.red, bullet.magenta][n % 2]);
             pat:fire(pat);
 
             ang += 8.561;
@@ -29,7 +36,7 @@ local function bossFunc()
         }
     }
 
-    setAnimationIdle(animation_create("bosses/honouko/idle.png", 0.2, 0, 0, 64, 64, 4));
+    setAnimationIdle(anims.enemy.honIdle);
     setLife(1000);
     setHitbox(24);
     setBoss(1);
@@ -47,4 +54,4 @@ local function bossFunc()
     }
 }
 
-enemy_create(bossFunc, 0, 112);
+enemy.create(bossFunc, 0, 112);

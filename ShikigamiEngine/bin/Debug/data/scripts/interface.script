@@ -1,0 +1,10 @@
+// Create background image in the frame
+local function func()
+{
+    setAnimation(anims.system.frameBack);
+}
+frameObject.create(func, 320, 240);
+
+// Set boss marker 
+boss.setMarkerAnimation(anims.system.marker);
+boss.setHealthBarAnimations(anims.system.healthBack, anims.system.healthFront);

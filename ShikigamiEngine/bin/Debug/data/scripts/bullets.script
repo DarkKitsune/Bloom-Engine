@@ -1,33 +1,11 @@
-createEffectTable = {
-    "gray": animation_create("bullets/bullets.png", 0, 33 * 0, 2013, 33, 33, 1),
-    "red": animation_create("bullets/bullets.png", 0, 33 * 1, 2013, 33, 33, 1),
-    "magenta": animation_create("bullets/bullets.png", 0, 33 * 2, 2013, 33, 33, 1),
-    "blue": animation_create("bullets/bullets.png", 0, 33 * 3, 2013, 33, 33, 1),
-    "cyan": animation_create("bullets/bullets.png", 0, 33 * 4, 2013, 33, 33, 1),
-    "green": animation_create("bullets/bullets.png", 0, 33 * 5, 2013, 33, 33, 1),
-    "yellow": animation_create("bullets/bullets.png", 0, 33 * 6, 2013, 33, 33, 1),
-    "white": animation_create("bullets/bullets.png", 0, 33 * 7, 2013, 33, 33, 1)
-};
-
-destroyEffectTable = {
-    "gray": animation_create("bullets/deletes.png", 0.5, 0, 64 * 0, 64, 64, 8),
-    "red": animation_create("bullets/deletes.png", 0.5, 0, 64 * 1, 64, 64, 8),
-    "magenta": animation_create("bullets/deletes.png", 0.5, 0, 64 * 2, 64, 64, 8),
-    "blue": animation_create("bullets/deletes.png", 0.5, 0, 64 * 3, 64, 64, 8),
-    "cyan": animation_create("bullets/deletes.png", 0.5, 0, 64 * 4, 64, 64, 8),
-    "green": animation_create("bullets/deletes.png", 0.5, 0, 64 * 5, 64, 64, 8),
-    "yellow": animation_create("bullets/deletes.png", 0.5, 0, 64 * 6, 64, 64, 8),
-    "white": animation_create("bullets/deletes.png", 0.5, 0, 64 * 7, 64, 64, 8)
-};
-
 function onBulletCreate()
 {
     local oldGlow = getGlow();
 
     setScale(3, 3);
     setAlpha(0);
-    setGlow(127);
-    setAnimation(createEffectTable[getBulletType()]);
+    setGlow(200);
+    setAnimation(anims.bulletCreate[getBulletType()]);
 
     changeScale(0.7, 0.7, TWEEN_DECELERATE, 15);
     changeAlpha(255, TWEEN_SMOOTH, 10);
@@ -43,7 +21,7 @@ function onBulletDestroy()
 {
     setGlow(255);
     setSpeed(0);
-    setAnimation(destroyEffectTable[getBulletType()]);
+    setAnimation(anims.bulletDelete[getBulletType()]);
 
     wait(15);
 

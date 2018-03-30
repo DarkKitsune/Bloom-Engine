@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 using DrakeScript;
 
@@ -35,13 +36,13 @@ namespace ShikigamiEngine
 			}
 		}
 
-		public static Value CreateTask(Entity parent, Function function)
+		public static Task CreateTask(Entity parent, Function function)
 		{
 			var task = new Task(parent, function);
-			var ret = task.Resume();
+			task.Resume();
 			if (task.Coroutine.Status == CoroutineStatus.Yielded)
 				Tasks.Add(task);
-			return ret;
+			return task;
 		}
 
 		public static Value InvokeEntityEvent(Entity ent, string name, params Value[] args)
@@ -69,6 +70,22 @@ namespace ShikigamiEngine
 				Tasks.Add(task);
 			return task;
 		}
-	}
+
+        public static Dictionary<string, Function> LoadedFileFunctions = new Dictionary<string, Function>();
+        public static Function LoadFile(string path)
+        {
+            Function ret;
+            path = Path.GetFullPath(Paths.Scripts + path);
+            if (LoadedFileFunctions.TryGetValue(path, out ret))
+                return ret;
+            ret = Context.LoadFile(path);
+            LoadedFileFunctions.Add(path, ret);
+            return ret;
+        }
+        public static Value RunFile(string path)
+        {
+            return LoadFile(path).Invoke();
+        }
+    }
 }
 

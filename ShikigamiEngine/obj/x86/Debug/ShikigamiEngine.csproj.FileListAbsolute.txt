@@ -10,3 +10,15 @@
 /home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.csproj.CoreCompileInputs.cache
 /home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.exe
 /home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/obj/x86/Debug/ShikigamiEngine.pdb
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\obj\x86\Debug\ShikigamiEngine.exe
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\ShikigamiEngine.exe.config
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\OpenTK.dll.config
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\Content\fontMedium.xnb
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\Content\fontSmall.xnb
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\ShikigamiEngine.exe
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\ShikigamiEngine.pdb
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\MonoGame.Framework.dll
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\PowerDS.dll
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\bin\Debug\MonoGame.Framework.xml
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\obj\x86\Debug\ShikigamiEngine.pdb
+C:\Users\Norm & Barb\Documents\projects\csharp\Shikigami-Engine\ShikigamiEngine\obj\x86\Debug\ShikigamiEngine.csprojResolveAssemblyReference.cache

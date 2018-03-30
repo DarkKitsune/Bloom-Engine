@@ -1,19 +1,15 @@
+// Create animations
+runScript("animations.script");
+
+// Define bullets
+runScript("bullets.script");
+runScript("playerBullets.script");
+
 // Set stages
-addStage("stages/stage1.script");
+runScript("stageList.script");
 
-// Create background image in the frame
-local function func()
-{
-    setAnimation(animation_create("frame/background.png", 0, 0, 0, 640, 480, 1));
-}
-frameObject_create(func, 320, 240);
-
-// Set other stuff
-boss_setMarkerAnimation(animation_create("info/info1.png", 0, 0, 0, 64, 16, 1));
-boss_setHealthBarAnimations(
-    animation_create("info/info1.png", 0, 1, 16, 14, 16, 1),
-    animation_create("info/info1.png", 0, 1, 32, 14, 16, 1)
-);
+// Set up interface stuff
+runScript("interface.script");
 
 // Set test player data
 player.setStartPosition(0, 400);
@@ -21,11 +17,11 @@ player.setSpeed(4.5, 3);
 player.setHitbox(2);
 player.setTurnTime(8);
 player.setReviveTime(130);
-player.setAnimationIdle(animation_create("players/reimu/reimu.png", 0.2, 0, 0, 32, 48, 8));
-player.setAnimationTurnRight(animation_create("players/reimu/reimu.png", 0, 0, 48, 32, 48, 8));
-player.setAnimationRight(animation_create("players/reimu/reimu.png", 0.2, 0, 96, 32, 48, 8));
-player.setAnimationTurnLeft(animation_createMirrored("players/reimu/reimu.png", 0, 0, 48, 32, 48, 8));
-player.setAnimationLeft(animation_createMirrored("players/reimu/reimu.png", 0.2, 0, 96, 32, 48, 8));
+player.setAnimationIdle(anims.player.reimuIdle);
+player.setAnimationTurnRight(anims.player.reimuTurnRight);
+player.setAnimationRight(anims.player.reimuRight);
+player.setAnimationTurnLeft(anims.player.reimuTurnLeft);
+player.setAnimationLeft(anims.player.reimuLeft);
 
 function onPlayerDie()
 {
@@ -52,7 +48,7 @@ function onPlayerRevive()
 
 function onPlayerShoot()
 {
-    local pat = pattern_create();
+    local pat = pattern.create();
     pat:setBullet(reimuAmulet.red);
     pat:setCount(7);
     pat:setSpeed(18);

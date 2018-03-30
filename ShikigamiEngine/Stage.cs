@@ -34,7 +34,7 @@ namespace ShikigamiEngine
 		public TaskObject Task {get; private set;}
 		Stage(string path)
 		{
-			Function = Script.Context.LoadFile("data/scripts/" + path);
+			Function = Script.LoadFile(path);
 			Task = null;
 		}
 

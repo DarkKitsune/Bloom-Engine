@@ -30,35 +30,45 @@ namespace ShikigamiEngine
 			public static void Register()
 			{
 				Script.Context.SetGlobal("task", Script.Context.CreateFunction(TaskCreate, 1));
-				Script.Context.SetGlobal("wait", Script.Context.CreateFunction(Wait, 1));
+                Script.Context.AddMethod(typeof(Task), "stop", Script.Context.CreateFunction(TaskStop, 1));
+
+                Script.Context.SetGlobal("wait", Script.Context.CreateFunction(Wait, 1));
 				Script.Context.SetGlobal("choose", Script.Context.CreateFunction(Choose, 1));
 				//Script.Context.SetGlobal("next", Script.Context.CreateFunction(Next, 1));
 				Script.Context.SetGlobal("directory", Script.Context.CreateFunction(CurrentDirectory, 0));
 				Script.Context.SetGlobal("addStage", Script.Context.CreateFunction(AddStage, 0));
+                Script.Context.SetGlobal("loadScript", Script.Context.CreateFunction(LoadScript, 0));
+                Script.Context.SetGlobal("runScript", Script.Context.CreateFunction(RunScript, 0));
 
-				Script.Context.Globals["BLEND_ALPHA"] = Value.Create(BlendState.AlphaBlend);
-				Script.Context.Globals["BLEND_ADD"] = Value.Create(BlendState.Additive);
+                Script.Context.SetGlobal("BLEND_ALPHA", Value.Create(BlendState.AlphaBlend));
+                Script.Context.SetGlobal("BLEND_ADD", Value.Create(BlendState.Additive));
 
-				Script.Context.Globals["TWEEN_LINEAR"] = Value.Create(TweenType.Linear);
-				Script.Context.Globals["TWEEN_ACCELERATE"] = Value.Create(TweenType.Accelerate);
-				Script.Context.Globals["TWEEN_DECELERATE"] = Value.Create(TweenType.Decelerate);
-				Script.Context.Globals["TWEEN_SMOOTH"] = Value.Create(TweenType.Smooth);
+                Script.Context.SetGlobal("TWEEN_LINEAR", Value.Create(TweenType.Linear));
+                Script.Context.SetGlobal("TWEEN_ACCELERATE", Value.Create(TweenType.Accelerate));
+                Script.Context.SetGlobal("TWEEN_DECELERATE", Value.Create(TweenType.Decelerate));
+                Script.Context.SetGlobal("TWEEN_SMOOTH", Value.Create(TweenType.Smooth));
 			}
 
 			public static Value TaskCreate(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
 			{
 				var obj = ((Entity)interpreter.DynamicLocalConstants["this"].Object);
-				return Script.CreateTask(obj, args[0].VerifyType(Value.ValueType.Function, location).Function);
+				return Value.Create(Script.CreateTask(obj, args[0].VerifyType(Value.ValueType.Function, location).Function));
 			}
 
-			public static Value Wait(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
+            public static Value TaskStop(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
+            {
+                args[0].VerifyType<Task>(location).ObjectAs<Task>().Stop();
+                return Value.Nil;
+            }
+
+            public static Value Wait(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
 			{
 				if (args[0].Number <= 0)
 					return Value.Nil;
 				Value temp;
 				if (!interpreter.DynamicLocalConstants.TryGetValue("_task", out temp))
 					throw new InterpreterException("wait() can only be called within a task or event task", location);
-				var task = ((Task)temp.Object);
+				var task = temp.ObjectAs<Task>();
 				task.Yield();
 				task.NextResume = Engine.Time + args[0].Number;
 				return Value.Nil;
@@ -70,8 +80,8 @@ namespace ShikigamiEngine
 				return arr[Mathx.GetRandom(arr.Count)];
 			}
 
-			//static Dictionary<Tuple<SourceRef, Interpreter>, int> nextPosition = new Dictionary<Tuple<SourceRef, Interpreter>, int>();
-			/*public static Value Next(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
+            //static Dictionary<Tuple<SourceRef, Interpreter>, int> nextPosition = new Dictionary<Tuple<SourceRef, Interpreter>, int>();
+            /*public static Value Next(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
 			{
 				var arr = args[0].VerifyType(Value.ValueType.Array, location).Array;
 				if (arr.Count == 0)
@@ -91,16 +101,33 @@ namespace ShikigamiEngine
 				return arr[pos % arr.Count];
 			}*/
 
-			public static Value CurrentDirectory(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
-			{
-				return System.IO.Path.GetDirectoryName(interpreter.CallLocation.Source.Name) + "/";
-			}
+            public static Value CurrentDirectory(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
+            {
+                try
+                {
+                    return System.IO.Path.GetDirectoryName(interpreter.CallLocation.Source.Name) + "/";
+                }
+                catch (Exception e)
+                {
+                    return "";
+                }
+            }
 
-			public static Value AddStage(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
+            public static Value AddStage(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
 			{
 				Stage.AddStage(args[0].VerifyType(Value.ValueType.String, location));
 				return Value.Nil;
 			}
+
+			public static Value LoadScript(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
+			{
+				return Script.LoadFile(args[0].VerifyType(Value.ValueType.String, location));
+			}
+
+            public static Value RunScript(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
+            {
+                return Script.LoadFile(args[0].VerifyType(Value.ValueType.String, location)).Invoke();
+            }
 		}
 
 		public static class LibMath
@@ -124,8 +151,8 @@ namespace ShikigamiEngine
 		{
 			public static void Register()
 			{
-				Script.Context.SetGlobal("object_create", Script.Context.CreateFunction(Create, 3));
-				Script.Context.SetGlobal("frameObject_create", Script.Context.CreateFunction(CreateFrame, 3));
+				Script.Context.SetGlobal("object.create", Script.Context.CreateFunction(Create, 3));
+				Script.Context.SetGlobal("frameObject.create", Script.Context.CreateFunction(CreateFrame, 3));
 				Script.Context.SetGlobal("delete", Script.Context.CreateFunction(Delete, 0));
 				Script.Context.SetGlobal("destroy", Script.Context.CreateFunction(Destroy, 0));
 
@@ -475,9 +502,9 @@ namespace ShikigamiEngine
 			public static void Register()
 			{
 				Script.Context.SetGlobal("bulletDef", Script.Context.CreateFunction(CreateBulletDefinitions, 1));
-				Script.Context.SetGlobal("bullet", Script.Context.CreateFunction(CreateBullet, 5));
-				Script.Context.SetGlobal("bullet_create", Script.Context.CreateFunction(DestroyInCircle, 3));
-				Script.Context.SetGlobal("bullet_destroyInCircle", Script.Context.CreateFunction(DestroyInCircle, 3));
+				Script.Context.SetGlobal("bullet", new Table());
+				Script.Context.SetGlobal("bullet.create", Script.Context.CreateFunction(CreateBullet, 5));
+				Script.Context.SetGlobal("bullet.destroyInCircle", Script.Context.CreateFunction(DestroyInCircle, 3));
 
 				Script.Context.SetGlobal("getBulletType", Script.Context.CreateFunction(GetBulletType, 0));
 			}
@@ -562,7 +589,8 @@ namespace ShikigamiEngine
 		{
 			public static void Register()
 			{
-				Script.Context.SetGlobal("pattern_create", Script.Context.CreateFunction(Create, 0));
+                Script.Context.SetGlobal("pattern", new Table());
+                Script.Context.SetGlobal("pattern.create", Script.Context.CreateFunction(Create, 0));
 				Script.Context.AddMethod(typeof(Pattern), "fire", Script.Context.CreateFunction(Fire, 1));
 				Script.Context.AddMethod(typeof(Pattern), "setPosition", Script.Context.CreateFunction(SetPosition, 3));
 				Script.Context.AddMethod(typeof(Pattern), "setBullet", Script.Context.CreateFunction(SetBullet, 2));
@@ -674,8 +702,9 @@ namespace ShikigamiEngine
 		{
 			public static void Register()
 			{
-				Script.Context.SetGlobal("animation_create", Script.Context.CreateFunction(Create, 7));
-				Script.Context.SetGlobal("animation_createMirrored", Script.Context.CreateFunction(CreateMirrored, 7));
+                Script.Context.SetGlobal("animation", new Table());
+                Script.Context.SetGlobal("animation.create", Script.Context.CreateFunction(Create, 7));
+				Script.Context.SetGlobal("animation.createMirrored", Script.Context.CreateFunction(CreateMirrored, 7));
 			}
 
 			public static Value Create(Interpreter interpreter, SourceRef location, Value[] args, int argCount)
@@ -797,7 +826,7 @@ namespace ShikigamiEngine
 		{
 			public static void Register()
 			{
-				Script.Context.SetGlobal("enemy_create", Script.Context.CreateFunction(Create, 3));
+				Script.Context.SetGlobal("enemy.create", Script.Context.CreateFunction(Create, 3));
 				Script.Context.SetGlobal("setAnimationTurnLeft", Script.Context.CreateFunction(SetAnimationTurnLeft, 1));
 				Script.Context.SetGlobal("setAnimationTurnRight", Script.Context.CreateFunction(SetAnimationTurnRight, 1));
 				Script.Context.SetGlobal("setAnimationLeft", Script.Context.CreateFunction(SetAnimationLeft, 1));
@@ -894,7 +923,7 @@ namespace ShikigamiEngine
 				if (tobj is Enemy)
 				{
 					var obj = (Enemy)tobj;
-					obj.IsBoss = args[0].VerifyType(Value.ValueType.Number, location).Number > 0.5;
+					obj.IsBoss = args[0].VerifyType(Value.ValueType.Number, location).Bool;
 				}
 				return Value.Nil;
 			}
@@ -904,8 +933,8 @@ namespace ShikigamiEngine
 		{
 			public static void Register()
 			{
-				Script.Context.SetGlobal("boss_setMarkerAnimation", Script.Context.CreateFunction(SetMarkerAnimation, 1));
-				Script.Context.SetGlobal("boss_setHealthBarAnimations", Script.Context.CreateFunction(SetHealthbarAnimations, 2));
+				Script.Context.SetGlobal("boss.setMarkerAnimation", Script.Context.CreateFunction(SetMarkerAnimation, 1));
+				Script.Context.SetGlobal("boss.setHealthBarAnimations", Script.Context.CreateFunction(SetHealthbarAnimations, 2));
 			}
 
 			public static Value SetMarkerAnimation(Interpreter interpreter, SourceRef location, Value[] args, int argCount)

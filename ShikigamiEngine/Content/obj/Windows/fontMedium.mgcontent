@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/Content/fontMedium.spritefont</SourceFile>
-  <SourceTime>2017-10-18T14:24:43-07:00</SourceTime>
-  <DestFile>/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/Content/bin/Windows/fontMedium.xnb</DestFile>
-  <DestTime>2017-10-18T14:24:46-07:00</DestTime>
+  <SourceFile>C:/Users/Norm &amp; Barb/Documents/projects/csharp/Shikigami-Engine/ShikigamiEngine/Content/fontMedium.spritefont</SourceFile>
+  <SourceTime>2018-02-20T16:45:47.4737929-08:00</SourceTime>
+  <DestFile>C:/Users/Norm &amp; Barb/Documents/projects/csharp/Shikigami-Engine/ShikigamiEngine/Content/bin/Windows/fontMedium.xnb</DestFile>
+  <DestTime>2018-02-20T16:45:54.3191844-08:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2017-10-07T12:59:28-07:00</ImporterTime>
+  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2017-10-07T12:59:28-07:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
   <Parameters>
     <Key>PremultiplyAlpha</Key>
     <Value>True</Value>

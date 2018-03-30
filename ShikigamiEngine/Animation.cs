@@ -12,21 +12,32 @@ namespace ShikigamiEngine
 		static Dictionary<string, Texture2D> TextureCache = new Dictionary<string, Texture2D>();
 		public static Texture2D LoadTexture(string path)
 		{
-			var actualPath = Path.GetFullPath("data/textures/" + path);
+			var actualPath = Path.GetFullPath(Paths.Textures + path);
 			Texture2D ret;
 			if (!TextureCache.TryGetValue(actualPath, out ret))
 			{
 				using (var stream = File.OpenRead(actualPath))
 				{
-					ret = Texture2D.FromStream(Graphics.GraphicsDevice, stream);
+					ret = Texture2DPremultipliedFromStream(Graphics.GraphicsDevice, stream);
 					TextureCache.Add(actualPath, ret);
 				}
 			}
 			return ret;
 		}
 
+        public static Texture2D Texture2DPremultipliedFromStream(GraphicsDevice graphics, Stream stream)
+        {
+            var tex = Texture2D.FromStream(graphics, stream);
+            var data = new Color[tex.Width * tex.Height];
+            tex.GetData(data);
+            for (var i = 0; i < data.Length; i++)
+                data[i] = Color.FromNonPremultiplied(data[i].R, data[i].G, data[i].B, data[i].A);
+            tex.SetData(data);
+            return tex;
+        }
 
-		public Texture2D Texture {get; private set;}
+
+        public Texture2D Texture {get; private set;}
 		public double Speed {get; private set;}
 		public Rectangle[] Frames;
 		Primitive[] FramePrimitives;

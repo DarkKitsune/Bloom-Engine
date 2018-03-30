@@ -4,7 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/Content/fontSmall.spritefont</File>
-    <File>/home/dark/Projects/CSharp/ShikigamiEngine/ShikigamiEngine/Content/fontMedium.spritefont</File>
+    <File>C:/Users/Norm &amp; Barb/Documents/projects/csharp/Shikigami-Engine/ShikigamiEngine/Content/fontMedium.spritefont</File>
+    <File>C:/Users/Norm &amp; Barb/Documents/projects/csharp/Shikigami-Engine/ShikigamiEngine/Content/fontSmall.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

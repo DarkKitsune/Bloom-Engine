@@ -58,7 +58,8 @@ namespace ShikigamiEngine
 			SpriteBatch = new SpriteBatch(GraphicsDevice);
 			Graphics.GraphicsDeviceManager = GraphicsDeviceManager;
 			Graphics.GraphicsDevice = GraphicsDevice;
-			Graphics.SpriteBatch = SpriteBatch;
+
+            Graphics.SpriteBatch = SpriteBatch;
 			Graphics.BasicEffect = new BasicEffect(GraphicsDevice);
 				Graphics.BasicEffect.TextureEnabled = true;
 				Graphics.BasicEffect.LightingEnabled = false;
@@ -98,9 +99,7 @@ namespace ShikigamiEngine
 			Primitive.CreateBasicPrimitives();
 			UserPrimitive.UpdateCircularBar(false);
 
-			Script.Context.DoFile("data/scripts/bulletdef.script");
-			Script.Context.DoFile("data/scripts/bulletdefPlayer.script");
-			MainTask = new TaskObject(Script.Context.LoadFile("data/scripts/init.script"));
+			MainTask = new TaskObject(Script.LoadFile("init.script"));
 			Stage.NextStage();
 
 			new Player();
@@ -165,13 +164,13 @@ namespace ShikigamiEngine
 				Graphics.GraphicsDevice.Viewport.Width - 55,
 				Graphics.GraphicsDevice.Viewport.Height - 20
 			);
-			Graphics.DrawTextShadowed(infoPosition, String.Format("UPS {0:#.##}", Engine.UPS), Font.Small, Color.White);
+			Graphics.DrawTextShadowed(infoPosition, $"UPS {Engine.UPS:#.##}", Font.Small, Color.White);
 
 			infoPosition = new Vector2(
 				Graphics.GraphicsDevice.Viewport.Width - 55,
 				Graphics.GraphicsDevice.Viewport.Height - 10
 			);
-			Graphics.DrawTextShadowed(infoPosition, String.Format("FPS {0:#.##}", Engine.FPS), Font.Small, Color.White);
+			Graphics.DrawTextShadowed(infoPosition, $"FPS {Engine.FPS:#.##}", Font.Small, Color.White);
 
 			base.Draw(gameTime);
 		}
